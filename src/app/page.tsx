@@ -54,10 +54,10 @@ const faqs = [
     "What is Netherite Addon?",
     "A premium Meteor addon to bypass the anti cheat, to find bases and netherite quickly.",
   ],
-  ["Will i get banned", "No, this fully bypasses anti cheat and has a anti /sus feature to make sure your account will not get banned."],
+  ["Will i get banned?", "No, this fully bypasses anti cheat and has a anti /sus feature to make sure your account will not get banned."],
   [
-    "Can the download button be wired later?",
-    "Yes, replace the href with your real file or launcher route.",
+    "What version is this?",
+    "This can be launched on any version from 1.20-1.21.11.",
   ],
 ] as const;
 
@@ -126,7 +126,6 @@ function ShowcaseCard({
             </div>
         ) : (
             <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-black/30 p-6 text-sm text-zinc-400">
-              This section is a UI preview slot for your next screenshot or clip.
             </div>
         )}
       </div>
@@ -227,18 +226,18 @@ export default function Page() {
                 <div className="grid gap-4 sm:grid-cols-3">
                   <StatCard
                       label="Style"
-                      value="Launcher"
-                      sub="Glass panels, neon accents, clean hierarchy."
+                      value="Built-in bypass"
+                      sub="Bypasses all of DonutSMP anti cheat to find spawners, bases, and more"
                   />
                   <StatCard
                       label="Target"
                       value="DonutSMP"
-                      sub="Built for a fast utility-dashboard feel."
+                      sub="Built to bypass DonutSMP anti cheat"
                   />
                   <StatCard
                       label="Build"
                       value="Meteor"
-                      sub="Premium addon-inspired presentation."
+                      sub="Premium addon-inspired presentation for meteor client."
                   />
                 </div>
               </div>
