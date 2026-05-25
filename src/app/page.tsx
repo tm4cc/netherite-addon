@@ -54,7 +54,7 @@ const faqs = [
     "What is Netherite Addon?",
     "A premium Meteor addon to bypass the anti cheat, to find bases and netherite quickly.",
   ],
-  ["Will i get banned", "No, this fully bypasses anti cheat and has a "anti /sus" feature to make sure your account will not get banned."],
+  ["Will i get banned", "No, this fully bypasses anti cheat and has a anti /sus feature to make sure your account will not get banned."],
   [
     "Can the download button be wired later?",
     "Yes, replace the href with your real file or launcher route.",
