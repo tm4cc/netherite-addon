@@ -106,36 +106,41 @@ function ShowcaseCard({
   image: string | null;
   alt: string;
 }) {
-  return (
-      <div className="glass flex h-full flex-col rounded-[2rem] p-6 md:p-8">
-        <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
-          Showcase
-        </div>
+  function ShowcaseCard({
+                          title,
+                          desc,
+                          image,
+                          alt,
+                        }: {
+    title: string;
+    desc: string;
+    image: string | null;
+    alt: string;
+  }) {
+    return (
+        <div className="glass rounded-[2rem] p-6 md:p-8">
+          <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
+            Showcase
+          </div>
 
-        <div className="mt-3 text-4xl font-bold text-purple-300">{title}</div>
+          <div className="mt-3 text-4xl font-bold text-purple-300">{title}</div>
 
-        <p className="mt-4 text-zinc-300">{desc}</p>
+          <p className="mt-4 text-zinc-300">{desc}</p>
 
-        <div className="mt-6 flex-1">
           {image ? (
-              <div className="h-full overflow-hidden rounded-[1.5rem] border border-purple-500/20">
+              <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-purple-500/20">
                 <Image
                     src={image}
                     alt={alt}
                     width={1600}
                     height={900}
-                    className="h-full w-full object-cover"
+                    className="h-auto w-full object-cover"
                 />
               </div>
-          ) : (
-              <div className="flex h-full min-h-[260px] items-center justify-center rounded-[1.5rem] border border-white/10 bg-black/30 text-sm text-zinc-500">
-                Visual preview coming soon
-              </div>
-          )}
+          ) : null}
         </div>
-      </div>
-  );
-}
+    );
+  }
 
 export default function Page() {
   const [open, setOpen] = useState<number | null>(0);
@@ -312,30 +317,9 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="features" className="mx-auto max-w-7xl px-6 py-24">
-          <Reveal>
-            <h2 className="mb-10 text-3xl font-bold">Features</h2>
-          </Reveal>
-
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {features.map(([label, Icon, desc]) => (
-                <Reveal key={label}>
-                  <motion.div
-                      whileHover={{ y: -6, scale: 1.02 }}
-                      className="glass rounded-3xl p-6 transition"
-                  >
-                    <Icon className="mb-5 text-purple-300" />
-                    <div className="font-semibold">{label}</div>
-                    <p className="mt-2 text-sm text-zinc-400">{desc}</p>
-                  </motion.div>
-                </Reveal>
-            ))}
-          </div>
-        </section>
-
         <section id="showcase" className="mx-auto max-w-7xl px-6 py-24">
           <Reveal>
-            <div className="grid items-stretch gap-6 lg:grid-cols-2">
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {showcaseSections.map((section) => (
                   <ShowcaseCard
                       key={section.title}
@@ -345,41 +329,6 @@ export default function Page() {
                       alt={section.alt}
                   />
               ))}
-            </div>
-          </Reveal>
-        </section>
-
-        <section id="download" className="mx-auto max-w-7xl px-6 py-24">
-          <Reveal>
-            <div className="glass rounded-[2rem] p-8 md:p-10">
-              <div className="grid items-center gap-8 lg:grid-cols-[1.15fr_.85fr]">
-                <div>
-                  <div className="inline-flex items-center gap-2 rounded-full bg-purple-500/10 px-4 py-2 text-purple-200">
-                    Download panel
-                  </div>
-                  <h3 className="mt-5 text-4xl font-bold">Get the latest build</h3>
-                  <p className="mt-3 max-w-xl text-zinc-300">
-                    Optimized utility build for DonutSMP-style gameplay with a polished
-                    launcher-like presentation and a cleaner premium layout.
-                  </p>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  <div className="rounded-2xl border border-white/10 bg-black/30 p-4 text-sm text-zinc-300">
-                    Version: 1.0.0 • Java Edition
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-black/30 p-4 text-sm text-zinc-300">
-                    Compatibility: Windows • 1.20+ • Low-latency
-                  </div>
-                  <a
-                      href="/netherite-1.21.11.jar"
-                      download="netherite-1.21.11.jar"
-                      className="rounded-2xl bg-gradient-to-r from-purple-600 to-violet-500 px-6 py-4 text-center font-semibold shadow-lg shadow-purple-500/30"
-                  >
-                    Download Netherite Addon
-                  </a>
-                </div>
-              </div>
             </div>
           </Reveal>
         </section>
