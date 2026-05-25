@@ -125,7 +125,6 @@ function ShowcaseCard({
               />
             </div>
         ) : null}
-        )}
       </div>
   );
 }
