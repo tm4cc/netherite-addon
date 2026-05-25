@@ -107,24 +107,32 @@ function ShowcaseCard({
   alt: string;
 }) {
   return (
-      <div className="glass rounded-[2rem] p-6 md:p-8">
+      <div className="glass flex h-full flex-col rounded-[2rem] p-6 md:p-8">
         <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
           Showcase
         </div>
+
         <div className="mt-3 text-4xl font-bold text-purple-300">{title}</div>
+
         <p className="mt-4 text-zinc-300">{desc}</p>
 
-        {image ? (
-            <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-purple-500/20">
-              <Image
-                  src={image}
-                  alt={alt}
-                  width={1600}
-                  height={900}
-                  className="h-auto w-full object-cover"
-              />
-            </div>
-        ) : null}
+        <div className="mt-6 flex-1">
+          {image ? (
+              <div className="h-full overflow-hidden rounded-[1.5rem] border border-purple-500/20">
+                <Image
+                    src={image}
+                    alt={alt}
+                    width={1600}
+                    height={900}
+                    className="h-full w-full object-cover"
+                />
+              </div>
+          ) : (
+              <div className="flex h-full min-h-[260px] items-center justify-center rounded-[1.5rem] border border-white/10 bg-black/30 text-sm text-zinc-500">
+                Visual preview coming soon
+              </div>
+          )}
+        </div>
       </div>
   );
 }
@@ -327,13 +335,13 @@ export default function Page() {
 
         <section id="showcase" className="mx-auto max-w-7xl px-6 py-24">
           <Reveal>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="grid items-stretch gap-6 lg:grid-cols-2">
               {showcaseSections.map((section) => (
                   <ShowcaseCard
                       key={section.title}
                       title={section.title}
                       desc={section.desc}
-                      image={section.image}
+                      image={section.image ?? null}
                       alt={section.alt}
                   />
               ))}
