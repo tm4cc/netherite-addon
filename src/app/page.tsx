@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import {
-  ArrowRight,
   Boxes,
   Cpu,
   Crosshair,
@@ -19,22 +18,43 @@ import {
 } from "lucide-react";
 
 const features = [
-  ["Base Finder", Search],
-  ["ESP System", Eye],
-  ["Storage Detection", Boxes],
-  ["Tracers", Crosshair],
-  ["Player Tracking", Flame],
-  ["X-Ray Visualization", Layers3],
-  ["Chunk Analysis", Cpu],
-  ["Performance Optimized", Shield],
+  ["Base Finder", Search, "Detects when blocks that are normally used in a base and notifies you."],
+  ["ESP System", Eye, "Shows visual overlays that locate chests, players, and anything you select."],
+  ["Storage Detection", Boxes, "Identifies storage-related targets to locate bases."],
+  ["Tracers", Crosshair, "Draws directional lines to the selected target."],
+  ["Player Tracking", Flame, "Shows all players close to you."],
+  ["X-Ray Visualization", Layers3, "X-Ray through blocks to locate ores, or valuables."],
+  ["Chunk Analysis", Cpu, "Locates chunks that have been recently loaded, meaning theres likely a base."],
+  ["Performance Optimized", Shield, "Keeps the interface lightweight and responsive, with no ping or fps spikes."],
+] as const;
+
+const showcaseSections = [
+  {
+    title: "Deepslate Bypass",
+    desc: "Renders blocks below deepslate from your current position to find bases.",
+    image: "/deepslate-scanner.jpg",
+    alt: "Deepslate scanner showcase",
+  },
+  {
+    title: "Anti /sus",
+    desc: "A feature that works around the games flag system to make you dont get on /sus to never get banned!",
+    image: null,
+    alt: "",
+  },
+  {
+    title: "Flight",
+    desc: "A feature to bypass DonutSMP anti-flight so you can fly around to look for bases/netherite without getting banned",
+    image: null,
+    alt: "",
+  },
 ] as const;
 
 const faqs = [
   [
     "What is Netherite Addon?",
-    "A premium Meteor addon-inspired UI built for DonutSMP-style gameplay.",
+    "A premium Meteor addon to bypass the anti cheat, to find bases and netherite quickly.",
   ],
-  ["Is it responsive?", "Yes, it is designed for mobile, tablet, and desktop."],
+  ["Will i get banned", "No, this fully bypasses anti cheat and has a "anti /sus" feature to make sure your account will not get banned."],
   [
     "Can the download button be wired later?",
     "Yes, replace the href with your real file or launcher route.",
@@ -71,6 +91,44 @@ function StatCard({
         <div className="text-xs uppercase tracking-[0.3em] text-zinc-500">{label}</div>
         <div className="mt-3 text-3xl font-bold text-white">{value}</div>
         <div className="mt-2 text-sm text-zinc-400">{sub}</div>
+      </div>
+  );
+}
+
+function ShowcaseCard({
+                        title,
+                        desc,
+                        image,
+                        alt,
+                      }: {
+  title: string;
+  desc: string;
+  image: string | null;
+  alt: string;
+}) {
+  return (
+      <div className="glass rounded-[2rem] p-6 md:p-8">
+        <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
+          Showcase
+        </div>
+        <div className="mt-3 text-4xl font-bold text-purple-300">{title}</div>
+        <p className="mt-4 text-zinc-300">{desc}</p>
+
+        {image ? (
+            <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-purple-500/20">
+              <Image
+                  src={image}
+                  alt={alt}
+                  width={1600}
+                  height={900}
+                  className="h-auto w-full object-cover"
+              />
+            </div>
+        ) : (
+            <div className="mt-6 rounded-[1.5rem] border border-white/10 bg-black/30 p-6 text-sm text-zinc-400">
+              This section is a UI preview slot for your next screenshot or clip.
+            </div>
+        )}
       </div>
   );
 }
@@ -146,8 +204,7 @@ export default function Page() {
                     Netherite Addon
                   </h1>
                   <p className="max-w-xl text-lg text-zinc-300">
-                    A premium Meteor addon-inspired dashboard built around DonutSMP-style
-                    gameplay, cleaner visuals, and a faster workflow.
+                    A premium Meteor addon that makes your game run smoother, bypass anti cheat, and find bases and netherite fast.
                   </p>
                 </div>
 
@@ -168,9 +225,21 @@ export default function Page() {
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-3">
-                  <StatCard label="Style" value="Launcher" sub="Glass panels, neon accents, clean hierarchy." />
-                  <StatCard label="Target" value="DonutSMP" sub="Built for a fast utility-dashboard feel." />
-                  <StatCard label="Build" value="Meteor" sub="Premium addon-inspired presentation." />
+                  <StatCard
+                      label="Style"
+                      value="Launcher"
+                      sub="Glass panels, neon accents, clean hierarchy."
+                  />
+                  <StatCard
+                      label="Target"
+                      value="DonutSMP"
+                      sub="Built for a fast utility-dashboard feel."
+                  />
+                  <StatCard
+                      label="Build"
+                      value="Meteor"
+                      sub="Premium addon-inspired presentation."
+                  />
                 </div>
               </div>
             </Reveal>
@@ -245,7 +314,7 @@ export default function Page() {
           </Reveal>
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {features.map(([label, Icon]) => (
+            {features.map(([label, Icon, desc]) => (
                 <Reveal key={label}>
                   <motion.div
                       whileHover={{ y: -6, scale: 1.02 }}
@@ -253,9 +322,7 @@ export default function Page() {
                   >
                     <Icon className="mb-5 text-purple-300" />
                     <div className="font-semibold">{label}</div>
-                    <p className="mt-2 text-sm text-zinc-400">
-                      Designed for a DonutSMP-focused workflow with a premium glass look.
-                    </p>
+                    <p className="mt-2 text-sm text-zinc-400">{desc}</p>
                   </motion.div>
                 </Reveal>
             ))}
@@ -264,42 +331,16 @@ export default function Page() {
 
         <section id="showcase" className="mx-auto max-w-7xl px-6 py-24">
           <Reveal>
-            <div className="grid gap-6 lg:grid-cols-[1.15fr_.85fr]">
-              <div className="glass rounded-[2rem] p-5 md:p-6">
-                <div className="overflow-hidden rounded-[1.5rem] border border-purple-500/20">
-                  <Image
-                      src="/netherite-finder.jpg"
-                      alt="Netherite Finder showcase"
-                      width={1600}
-                      height={900}
-                      className="h-auto w-full object-cover"
+            <div className="grid gap-6 lg:grid-cols-2">
+              {showcaseSections.map((section) => (
+                  <ShowcaseCard
+                      key={section.title}
+                      title={section.title}
+                      desc={section.desc}
+                      image={section.image}
+                      alt={section.alt}
                   />
-                </div>
-              </div>
-
-              <div className="glass rounded-[2rem] p-6 md:p-8">
-                <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
-                  Showcase
-                </div>
-                <div className="mt-3 text-4xl font-bold text-purple-300">
-                  Netherite Finder
-                </div>
-                <p className="mt-4 text-zinc-300">
-                  A clean preview focused on DonutSMP-style utility, with a sharper
-                  dashboard layout and a more distinct launcher feel.
-                </p>
-
-                <div className="mt-6 space-y-3">
-                  <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                    <div className="text-sm text-zinc-400">Display mode</div>
-                    <div className="mt-1 font-semibold">Visual tracking panel</div>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
-                    <div className="text-sm text-zinc-400">Theme</div>
-                    <div className="mt-1 font-semibold">Purple neon launcher UI</div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </Reveal>
         </section>
@@ -376,7 +417,7 @@ export default function Page() {
 
         <footer className="mx-auto max-w-7xl px-6 py-14 text-sm text-zinc-500">
           <div className="mb-6 h-px w-full bg-gradient-to-r from-transparent via-purple-500/70 to-transparent" />
-          © 2026 Netherite Addon • DonutSMP-inspired premium aesthetic
+          © 2026 Netherite Addon • DonutSMP meteor client addon
         </footer>
       </main>
   );
