@@ -38,13 +38,11 @@ const showcaseSections = [
   {
     title: "Anti /sus",
     desc: "A feature that works around the games flag system to make you dont get on /sus to never get banned!",
-    image: null,
     alt: "",
   },
   {
     title: "Flight",
     desc: "A feature to bypass DonutSMP anti-flight so you can fly around to look for bases/netherite without getting banned",
-    image: null,
     alt: "",
   },
 ] as const;
