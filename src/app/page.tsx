@@ -117,39 +117,28 @@ function ShowcaseCard({
     image: string | null;
     alt: string;
   }) {
-    function ShowcaseCard({
-                            title,
-                            desc,
-                            image,
-                            alt,
-                          }: {
-      title: string;
-      desc: string;
-      image: string | null;
-      alt: string;
-    }) {
-      return (
-          <div className="glass rounded-[2rem] p-6 md:p-8">
-            <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
-              Showcase
-            </div>
-            <div className="mt-3 text-4xl font-bold text-purple-300">{title}</div>
-            <p className="mt-4 text-zinc-300">{desc}</p>
-
-            {image ? (
-                <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-purple-500/20">
-                  <Image
-                      src={image}
-                      alt={alt}
-                      width={1600}
-                      height={900}
-                      className="h-auto w-full object-cover"
-                  />
-                </div>
-            ) : null}
+    return (
+        <div className="glass rounded-[2rem] p-6 md:p-8">
+          <div className="text-xs uppercase tracking-[0.35em] text-zinc-500">
+            Showcase
           </div>
-      );
-    }
+          <div className="mt-3 text-4xl font-bold text-purple-300">{title}</div>
+          <p className="mt-4 text-zinc-300">{desc}</p>
+
+          {image ? (
+              <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-purple-500/20">
+                <Image
+                    src={image}
+                    alt={alt}
+                    width={1600}
+                    height={900}
+                    className="h-auto w-full object-cover"
+                />
+              </div>
+          ) : null}
+        </div>
+    );
+  }
 
 export default function Page() {
   const [open, setOpen] = useState<number | null>(0);
