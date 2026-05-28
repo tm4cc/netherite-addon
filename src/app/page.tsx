@@ -206,8 +206,8 @@ export default function Page() {
 
                 <div className="flex flex-wrap gap-4">
                   <a
-                      href="/netherite-1.21.11.jar"
-                      download="netherite-1.21.11.jar"
+                      href="/NetheriteAddon.jar"
+                      download="NetheriteAddon.jar"
                       className="rounded-2xl bg-gradient-to-r from-purple-600 to-violet-500 px-6 py-4 text-center font-semibold shadow-lg shadow-purple-500/30"
                   >
                     Download Netherite Addon
